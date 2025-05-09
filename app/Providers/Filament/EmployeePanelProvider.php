@@ -23,11 +23,15 @@ class EmployeePanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->id('employee')
-            ->path('employee')
-            ->colors([
-                'primary' => Color::Amber,
-            ])
+        ->id('employee')
+        ->path('employee')
+        ->login()
+        ->colors([
+            'primary' => '#38bdf8',
+        ])
+       
+        
+        
             ->discoverResources(in: app_path('Filament/Employee/Resources'), for: 'App\\Filament\\Employee\\Resources')
             ->discoverPages(in: app_path('Filament/Employee/Pages'), for: 'App\\Filament\\Employee\\Pages')
             ->pages([
@@ -49,8 +53,6 @@ class EmployeePanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
-            ->authMiddleware([
-                Authenticate::class,
-            ]);
+          ;
     }
 }
