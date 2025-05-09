@@ -17,6 +17,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Card;
 use Filament\Resources\Form as FilamentForm;
+use Filament\Tables\Actions\ViewAction;
 
 class EmployeeResource extends Resource
 {
@@ -46,7 +47,7 @@ public static function form(Form $form): Form
         ]);
 }
 
-  
+
 
 public static function table(Table $table): Table
 {
@@ -61,6 +62,7 @@ public static function table(Table $table): Table
             //
         ])
         ->actions([
+            ViewAction::make()->label('Profile'),
             Tables\Actions\EditAction::make(),
             Tables\Actions\DeleteAction::make(),
         ])
