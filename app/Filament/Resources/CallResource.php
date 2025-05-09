@@ -18,6 +18,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Card;
 use Filament\Tables\Columns\TextColumn;
 use App\Models\Employee;
+use Filament\Tables\Actions\ViewAction;
 
 class CallResource extends Resource
 {
@@ -83,6 +84,7 @@ public static function table(Table $table): Table
             TextColumn::make('employee.name')->label('الموظف المسؤول'),
         ])
         ->actions([
+            ViewAction::make()->label('View'),
             Tables\Actions\EditAction::make(),
         ]);
 }
