@@ -19,5 +19,10 @@ public function setPasswordAttribute($value)
         'password',
         'job_description',
     ];
+
+    public function calls()
+    {
+        return $this->hasMany(Call::class);
+    }   
 }
 
