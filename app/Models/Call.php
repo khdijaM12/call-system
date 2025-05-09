@@ -16,7 +16,6 @@ class Call extends Model
         'client_phone',
         'complaint_text',
         'complaint_type',
-        'complaint_type',
         'status',
         'assigned_to',
     ];
