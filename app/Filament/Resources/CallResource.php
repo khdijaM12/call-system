@@ -19,8 +19,6 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Card;
 use Filament\Tables\Columns\TextColumn;
 use App\Models\Employee;
-use Filament\Tables\Actions\ViewAction;
-use Illuminate\Validation\ValidationException;
 
 class CallResource extends Resource
 {
@@ -97,25 +95,24 @@ class CallResource extends Resource
     //     return [
     //         'client_id' => $client->id,
     //         'complaint' => $data['complaint'],
-    //      
+    //
     //     ];
     // }
 
-    public static function table(Table $table): Table
-    {
-        return $table
-            ->columns([
-                TextColumn::make('client_name')->label('اسم العميل'),
-                TextColumn::make('client_phone')->label('رقم الهاتف'),
-                TextColumn::make('complaint_type')->label('نوع الشكوى'),
-                TextColumn::make('status')->label('الحالة'),
-                TextColumn::make('employee.name')->label('الموظف المسؤول'),
-            ])
-            ->actions([
-                ViewAction::make()->label('View'),
-                Tables\Actions\EditAction::make(),
-            ]);
-    }
+public static function table(Table $table): Table
+{
+    return $table
+        ->columns([
+            TextColumn::make('client_name')->label('اسم العميل'),
+            TextColumn::make('client_phone')->label('رقم الهاتف'),
+            TextColumn::make('complaint_type')->label('نوع الشكوى'),
+            TextColumn::make('status')->label('الحالة'),
+            TextColumn::make('employee.name')->label('الموظف المسؤول'),
+        ])
+        ->actions([
+            Tables\Actions\EditAction::make(),
+        ]);
+}
 
     public static function getRelations(): array
     {
