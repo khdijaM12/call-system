@@ -12,6 +12,7 @@ class Call extends Model
     }
 
     protected $fillable = [
+        'client_id',
         'client_name',
         'client_phone',
         'complaint_text',
@@ -20,4 +21,8 @@ class Call extends Model
         'status',
         'assigned_to',
     ];
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
 }
