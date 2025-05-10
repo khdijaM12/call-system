@@ -13,7 +13,6 @@ return new class extends Migration
 {
    Schema::create('calls', function (Blueprint $table) {
     $table->id();
-    $table->text('text');
     $table->text('complaint_text');
     $table->text('stat_text')->nullable();
 
@@ -23,7 +22,7 @@ return new class extends Migration
 
     $table->foreignId('client_id')->constrained('clients');
 
-    $table->foreignId('employee_id')->constrained('employees');
+    $table->foreignId('assigned_to')->constrained('employees'); 
 
     $table->timestamps();
 });

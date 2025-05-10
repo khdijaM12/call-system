@@ -18,6 +18,8 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Card;
 use Filament\Tables\Columns\TextColumn;
 use App\Models\Employee;
+use App\Models\ComplaintTypes;
+use App\Models\Statuses;
 
 class CallResource extends Resource
 {
@@ -30,34 +32,34 @@ class CallResource extends Resource
     return $form
         ->schema([
             Card::make([
-                TextInput::make('client_name')
-                    ->label('اسم العميل')
-                    ->required(),
-
-                TextInput::make('client_phone')
-                    ->label('رقم العميل')
-                    ->required(),
+                Select::make('client_id')
+                    ->label('العميل')
+                    ->relationship('client', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->required()
+                    ->createOptionForm([
+                        TextInput::make('name')
+                            ->label('اسم العميل')
+                            ->required(),
+                        TextInput::make('phone')
+                            ->label('رقم الهاتف')
+                    ]),
 
                 Textarea::make('complaint_text')
                     ->label('نص الشكوى')
                     ->required(),
 
-                Select::make('complaint_type')
-                    ->label('نوع الشكوى')
-                    ->options([
-                        'طلب خدمة' => 'طلب خدمة',
-                        'شكوى' => 'شكوى',
-                        'استفسار' => 'استفسار',
-                    ])
-                    ->required(),
+                Select::make('complaint_type_id')
+                        ->label('نوع الشكوى')
+                        ->options(ComplaintTypes::all()->pluck('name', 'id'))  
+                        ->required(),
 
-                Select::make('status')
-                    ->label('الحالة')
-                    ->options([
-                        'قيد المراجعة' => 'قيد المراجعة',
-                        'تم المراجعة' => 'تم المراجعة',
-                    ])
-                    ->default('قيد المراجعة'),
+                 Select::make('status_id')
+                        ->label('الحالة')
+                        ->options(Statuses::all()->pluck('name', 'id'))  
+                        ->default(Statuses::where('name', 'قيد المراجعة')->first()->id) 
+                        ->required(),
 
                 Select::make('assigned_to')
                     ->label('الموظف المسؤول')
@@ -76,12 +78,13 @@ public static function table(Table $table): Table
 {
     return $table
         ->columns([
-            TextColumn::make('client_name')->label('اسم العميل'),
-            TextColumn::make('client_phone')->label('رقم الهاتف'),
-            TextColumn::make('complaint_type')->label('نوع الشكوى'),
-            TextColumn::make('status')->label('الحالة'),
-            TextColumn::make('employee.name')->label('الموظف المسؤول'),
-        ])
+            TextColumn::make('client.name')->label('اسم العميل'),
+            TextColumn::make('client.phone')->label('رقم الهاتف'),
+            TextColumn::make('complaintType.name')->label('نوع الشكوى'),
+            TextColumn::make('complaint_text')->label('نص الشكوى'),
+            TextColumn::make('status.name')->label('الحالة'),
+            TextColumn::make('assignedEmployee.name')->label('الموظف المسؤول')->searchable(),
+                       ])
         ->actions([
             Tables\Actions\EditAction::make(),
         ]);

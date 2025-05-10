@@ -10,6 +10,8 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -23,7 +25,9 @@ class ComplaintTypesResource extends Resource
     {
         return $form
             ->schema([
-                //
+                TextInput::make('name')
+                    ->required() 
+                    ->label('اسم نوع الاجراء'),  
             ]);
     }
 
@@ -31,8 +35,8 @@ class ComplaintTypesResource extends Resource
     {
         return $table
             ->columns([
-                //
-            ])
+                TextColumn::make('name')->label('اسم نوع الاجراء'),
+                ])
             ->filters([
                 //
             ])
