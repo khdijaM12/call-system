@@ -64,4 +64,4 @@
     <?php echo e($content($darkModeBrandLogo, isDarkMode: true)); ?>
 
 <?php endif; ?>
-<?php /**PATH C:\Users\hanan\call-system\resources\views/vendor/filament-panels/components/logo.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\Users\hanan\call-system\vendor\filament\filament\src\/../resources/views/components/logo.blade.php ENDPATH**/ ?>
