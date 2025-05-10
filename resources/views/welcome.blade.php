@@ -99,7 +99,7 @@
                                             problem.</p>
                                         <p class="mt-6 text-lg leading-8 text-gray-600">Lorem ipsum, dolor sit amet
                                             consectetur
-                                            adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor
+                                            adipisicing elit. Maiores impedit hello suscipit eaque, iste dolor
                                             cupiditate
                                             blanditiis.</p>
                                     </div>
