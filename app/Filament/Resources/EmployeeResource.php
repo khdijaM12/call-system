@@ -26,10 +26,13 @@ class EmployeeResource extends Resource
 
 public static function form(Form $form): Form
 {
+
+    // dd('hi');
     return $form
         ->schema([
             TextInput::make('name')
                 ->required()
+                // ->visable(fn())
                 ->label('الاسم'),
 
             TextInput::make('phone')
