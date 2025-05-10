@@ -64,4 +64,9 @@ public function isEmployee()
     return $this->role === 'employee';
 }
 
+public function calls()
+{
+    return $this->hasMany(Call::class);
+}
+
 }

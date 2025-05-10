@@ -10,24 +10,24 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-{
-   Schema::create('calls', function (Blueprint $table) {
-    $table->id();
-    $table->text('complaint_text');
-    $table->text('stat_text')->nullable();
+    {
+        Schema::create('calls', function (Blueprint $table) {
+            $table->id();
+            $table->text('complaint_text');
+            $table->text('stat_text')->nullable();
 
-    $table->foreignId('complaint_type_id')->constrained('complaint_types');
+            $table->foreignId('complaint_type_id')->constrained('complaint_types');
 
-    $table->foreignId('status_id')->constrained('statuses');
+            $table->foreignId('status_id')->constrained('statuses');
 
-    $table->foreignId('client_id')->constrained('clients');
+            $table->foreignId('client_id')->constrained('clients');
 
-    $table->foreignId('assigned_to')->constrained('employees'); 
+            $table->foreignId('assigned_to')->constrained('employees');
+            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
 
-    $table->timestamps();
-});
-
-}
+            $table->timestamps();
+        });
+    }
 
     /**
      * Reverse the migrations.
