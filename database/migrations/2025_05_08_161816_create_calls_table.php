@@ -11,16 +11,23 @@ return new class extends Migration
      */
     public function up(): void
 {
-    Schema::create('calls', function (Blueprint $table) {
-        $table->id();
-        $table->string('client_name');
-        $table->string('client_phone');
-        $table->text('complaint_text');
-        $table->enum('complaint_type', ['طلب خدمة', 'شكوى', 'استفسار']);
-        $table->enum('status', ['قيد المراجعة', 'تم المراجعة'])->default('قيد المراجعة');
-        $table->foreignId('assigned_to')->constrained('employees')->onDelete('cascade');
-        $table->timestamps();
-    });
+   Schema::create('calls', function (Blueprint $table) {
+    $table->id();
+    $table->text('text');
+    $table->text('complaint_text');
+    $table->text('stat_text')->nullable();
+
+    $table->foreignId('complaint_type_id')->constrained('complaint_types');
+
+    $table->foreignId('status_id')->constrained('statuses');
+
+    $table->foreignId('client_id')->constrained('clients');
+
+    $table->foreignId('employee_id')->constrained('employees');
+
+    $table->timestamps();
+});
+
 }
 
     /**
